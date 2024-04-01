@@ -1,6 +1,5 @@
-import net.aksingh.owmjapis.core.OWM;
+import manages.WeatherManager;
 import net.aksingh.owmjapis.api.APIException;
-import net.aksingh.owmjapis.model.CurrentWeather;
 
 public class OWM_example
 {

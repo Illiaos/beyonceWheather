@@ -1,3 +1,5 @@
+package manages;
+
 import city.City;
 import net.aksingh.owmjapis.core.OWM;
 
