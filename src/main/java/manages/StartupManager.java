@@ -1,10 +1,15 @@
 package manages;
 
+import user_input.UserInput;
+
 public class StartupManager
 {
-    public void main(String []args)
+    public static void main(String []args)
     {
-        WeatherManager manager = new WeatherManager();
-        manager.requestWeather("London");
+        UserInput userInput = new UserInput();
+        userInput.manageInput();
+
+        //WeatherManager manager = new WeatherManager();
+        //manager.requestWeather("London");
     }
 }
