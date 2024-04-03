@@ -28,9 +28,15 @@ public class City
         weatherWind = new ArrayList<WeatherWind>();
     }
 
+    public double getTemperature()
+    {
+        if(weatherTemperature.isEmpty() == true) return  0.0f;
+        return weatherTemperature.get(0).temperature;
+    }
+
     public String toString()
     {
-        return  "ID: " + id
+        return  "ID: " + id + "\n"
                 + "Name: " + name + "\n"
                 + "Country: " + country + "\n"
                 + "Population: " + population + "\n"

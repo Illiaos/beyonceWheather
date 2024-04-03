@@ -9,7 +9,8 @@ public class StartupManager
         UserInput userInput = new UserInput();
         userInput.manageInput();
 
-        //WeatherManager manager = new WeatherManager();
-        //manager.requestWeather("London");
+        //currently used for debug, would be modified in future
+        WeatherManager manager = new WeatherManager();
+        manager.requestWeather("London");
     }
 }
