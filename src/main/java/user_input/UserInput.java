@@ -130,4 +130,22 @@ public class UserInput
     {
         System.out.println("NEED IMPLEMENTATION");
     }
+
+    //USED TO PERFORM JUNIT TESTS
+    public void addElementToCollection(ClotheElement clotheElement)
+    {
+        elements.add(clotheElement);
+    }
+
+    public int getSizeOfElements()
+    {
+        return elements.size();
+    }
+
+    public ClotheElement getByIndex(int index)
+    {
+        if(index >= getSizeOfElements()) return null;
+        return elements.get(index);
+    }
+    //
 }

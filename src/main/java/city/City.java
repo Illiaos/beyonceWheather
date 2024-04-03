@@ -34,6 +34,28 @@ public class City
         return weatherTemperature.get(0).temperature;
     }
 
+    public double getMinTemperature()
+    {
+        if(weatherTemperature.isEmpty() == true) return  0.0f;
+        return weatherTemperature.get(0).temperatureMin;
+    }
+
+    public double getMaxTemperature()
+    {
+        if(weatherTemperature.isEmpty() == true) return  0.0f;
+        return weatherTemperature.get(0).temperatureMax;
+    }
+
+    public String getCityName()
+    {
+        return this.name;
+    }
+
+    public String getCountry()
+    {
+        return this.country;
+    }
+
     public String toString()
     {
         return  "ID: " + id + "\n"

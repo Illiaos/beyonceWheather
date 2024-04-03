@@ -10,11 +10,12 @@ import java.net.URL;
 
 
 import org.json.JSONArray;
-import  org.json.JSONObject;
+import org.json.JSONObject;
 import weather_description.WeatherTemperature;
 
 public class WeatherManager {
     private final String apiKey = "a062d298e14f66a96d308541cf16cf6f";
+    private City city;
 
     public WeatherManager()
     {
@@ -43,7 +44,7 @@ public class WeatherManager {
                 br.close();
                 JSONObject jsonObject = new JSONObject(response.toString());
 
-                City city = createNewCity(jsonObject.getJSONObject("city"));
+                city = createNewCity(jsonObject.getJSONObject("city"));
 
 
                 JSONArray listArray = jsonObject.getJSONArray("list");
@@ -101,4 +102,11 @@ public class WeatherManager {
         weatherTemperature.humidity = listItem.getDouble("humidity");
         return  weatherTemperature;
     }
+
+    //USED FOR TESTS
+    public City getCity()
+    {
+        return city;
+    }
+    //
 }
