@@ -57,7 +57,9 @@ public class WeatherManager {
                     //System.out.println("DATE: " + listItem.get("dt_txt"));
                     //System.out.println("Element " + (1) + ": " + listItem.toString());
                 }
-                System.out.println(city.weatherTemperature.size());
+                System.out.println("Temperature: " + city.getTemperature() + "F");
+                System.out.println(city.toString());
+                //System.out.println(city.weatherTemperature.size());
                 //System.out.println(listItem.get("dt_txt"));
                 //listArray = listItem.getJSONArray("weather");
                 //listItem = listArray.getJSONObject(0);
@@ -86,7 +88,6 @@ public class WeatherManager {
         returnValue.timeZone = listItem.getDouble("timezone");
         returnValue.sunrise = listItem.getDouble("sunrise");
         returnValue.sunset = listItem.getDouble("sunset");
-        System.out.println(returnValue.toString());
         return  returnValue;
     }
 
