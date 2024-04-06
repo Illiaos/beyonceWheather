@@ -20,6 +20,18 @@
             <artifactId>owm-japis</artifactId>
             <version>2.5.3.0</version>
         </dependency>
+        <dependency>
+            <groupId>org.json</groupId>
+            <artifactId>json</artifactId>
+            <version>20240303</version>
+        </dependency>
+        <dependency>
+            <artifactId>com.google</artifactId>
+            <groupId>Ab</groupId>
+            <version>0.0.4.3</version>
+            <scope>system</scope>
+            <systemPath>${basedir}/src/main/bot/lib/Ab.jar</systemPath>
+        </dependency>
     </dependencies>
 
 </project>
