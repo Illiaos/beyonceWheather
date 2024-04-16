@@ -45,25 +45,14 @@ public class WeatherManager {
 
                 City city = createNewCity(jsonObject.getJSONObject("city"));
 
-
                 JSONArray listArray = jsonObject.getJSONArray("list");
                 for (int i = 0; i < listArray.length(); i++)
                 {
                     JSONObject listElement = listArray.getJSONObject(i);
 
                     city.weatherTemperature.add(createNewTemperature(listElement.getJSONObject("main")));
-                    //parseData(listArray.getJSONObject(i));
-                    //JSONObject listItem = listArray.getJSONObject(i);
-                    //System.out.println("DATE: " + listItem.get("dt_txt"));
-                    //System.out.println("Element " + (1) + ": " + listItem.toString());
                 }
                 System.out.println("Temperature: " + city.getTemperature() + "F");
-                System.out.println(city.toString());
-                //System.out.println(city.weatherTemperature.size());
-                //System.out.println(listItem.get("dt_txt"));
-                //listArray = listItem.getJSONArray("weather");
-                //listItem = listArray.getJSONObject(0);
-                //System.out.println("Element " + (1) + ": " + listItem.toString());
             }
             else
             {
