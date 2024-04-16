@@ -13,8 +13,8 @@ public class StartupManager
     {
         WeatherManager manager = new WeatherManager();
         manager.requestWeather("London");
-        manager.requestWeather("Warszawa");
-        manager.requestWeather("Brasilia");
+        //manager.requestWeather("Warszawa");
+        //manager.requestWeather("Brasilia");
 
         /*try{
 
