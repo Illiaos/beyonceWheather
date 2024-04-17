@@ -52,10 +52,10 @@ public class WeatherManager {
                 for (int i = 0; i < listArray.length(); i++)
                 {
                     JSONObject listElement = listArray.getJSONObject(i);
-                    System.out.println(listElement);
+                    //System.out.println(listElement);
                     WeatherData weatherData = new WeatherData();
                     getWeatherTemperature(listElement.getJSONObject("main"), weatherData);
-                    getRainData(listElement, weatherData);
+                    getWeatherMain(listElement, weatherData);
                     city.addWeatherCondition(listElement.getString("dt_txt"), weatherData);
                 }
                 //city.Debug();
@@ -108,6 +108,7 @@ public class WeatherManager {
         {
             rain = new Rain();
             weatherData.setRain(rain);
+            return;
         }
 
         JSONObject rainObj = listItem.getJSONObject("rain");
@@ -120,5 +121,18 @@ public class WeatherManager {
         parse = parse.replace("}", "");
         split = parse.split(":");
         rain = new Rain(split[1], split[0], Double.valueOf(split[1]));
+    }
+
+    private void getWeatherMain(JSONObject listItem, WeatherData weatherData)
+    {
+        JSONArray weatherArray = listItem.getJSONArray("weather");
+        String weather = weatherArray.toString();
+        if(weather.isEmpty()) return;
+        JSONObject obj = (JSONObject) weatherArray.get(0);
+        weatherData.setWeatherDescription(obj.getString("description"));
+        weatherData.setWeatherMain(obj.getString("main"));
+
+        if(!weatherData.getWeatherMain().equals("Rain")) return;
+        getRainData(listItem, weatherData);
     }
 }

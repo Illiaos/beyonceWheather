@@ -9,6 +9,8 @@ public class WeatherData
     public double maxTemperature;
     public  double generalTemperature;
     private Rain rain;
+    private String weatherDescription;
+    private String weatherMain;
 
     public  double getMinTemperature()
     {
@@ -34,4 +36,25 @@ public class WeatherData
     {
         return  this.rain;
     }
+
+    public void setWeatherDescription(String description)
+    {
+        this.weatherDescription = description;
+    }
+
+    public String getWeatherDescription()
+    {
+        return this.weatherDescription;
+    }
+
+    public void setWeatherMain(String weatherMain)
+    {
+        this.weatherMain = weatherMain;
+    }
+
+    public String getWeatherMain()
+    {
+        return this.weatherMain;
+    }
+
 }
