@@ -2,7 +2,6 @@ package weather_description;
 
 public class Rain
 {
-    private String rainState;
     private String duration;
     private double amount;
     private  boolean isRaining;
@@ -11,26 +10,14 @@ public class Rain
     {
         this.isRaining = false;
         this.duration = null;
-        this.rainState = null;
         this.amount = 0.0;
     }
 
-    public Rain(String rainState, String duration, double amount)
+    public Rain(String duration, double amount)
     {
-        this.rainState = rainState;
         this.duration = duration;
         this.amount = amount;
         this.isRaining = true;
-    }
-
-    public String getRainState()
-    {
-        return  this.rainState;
-    }
-
-    public void setRainState(String rainState)
-    {
-        this.rainState = rainState;
     }
 
     public String getDuration()

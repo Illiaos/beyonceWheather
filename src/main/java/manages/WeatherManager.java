@@ -112,15 +112,10 @@ public class WeatherManager {
         }
 
         JSONObject rainObj = listItem.getJSONObject("rain");
-        JSONArray weatherArray = listItem.getJSONArray("weather");
-        String weather = weatherArray.toString();
-        String[] split = weather.split(",");
-        split = split[1].split(":");
-        split[1] = split[1].replace("\"", "");
         String parse = rainObj.toString().replace("{", "");
         parse = parse.replace("}", "");
-        split = parse.split(":");
-        rain = new Rain(split[1], split[0], Double.valueOf(split[1]));
+        String[] split = parse.split(":");
+        rain = new Rain(split[0], Double.valueOf(split[1]));
     }
 
     private void getWeatherMain(JSONObject listItem, WeatherData weatherData)
