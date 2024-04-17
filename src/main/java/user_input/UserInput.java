@@ -133,26 +133,47 @@ public class UserInput
     {
         UserRequest request = new UserRequest();
         request.setStartDate(requestDate());
-        request.setCity(requestCity());
+        request.setRequestCity(requestCity());
     }
 
-    private Date requestDate()
+    private String[] requestCity()
     {
+        System.out.println("Enter city names");
+        String[] cityCollection = new String[3];
+        for (int i = 0; i != cityCollection.length; ++i)
+        {
+            while (true)
+            {
+                String input = scanner.next();
+                if(input.matches("[a-zA-Z]"))
+                {
+                    cityCollection[i] = input;
+                    break;
+                }
+            }
+        }
+        return  cityCollection;
+    }
+
+    // method to get start date from user input
+    public Date requestDate()
+    {
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd: MM: yyyy"); //SimpleDateFormat object to parse dates
+        dateFormat.setLenient(false);
+
+        // loop until user gives a valid date
         while (true)
         {
-            System.out.println("Enter Start Date in a format dd:mm:year");
-            SimpleDateFormat dateFormat = new SimpleDateFormat("dd:MM:yyyy");
-            dateFormat.setLenient(false);
-            String inputDate = scanner.next();
+            System.out.println("Enter Start Date in the format dd: mm: yyyy");
+            String inputDate = scanner.nextLine();
+
             try
             {
                 return dateFormat.parse(inputDate);
             }
-            catch (ParseException e)
-            {
-                System.out.println("Wrong Input");
+            catch (ParseException e) {
+                System.out.println("Wrong Input"); // handle parsing errors if the input date is invalid
             }
         }
     }
-
 }
