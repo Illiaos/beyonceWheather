@@ -8,7 +8,7 @@ public class WeatherData
     public double minTemperature;
     public double maxTemperature;
     public  double generalTemperature;
-    private   Rain rain;
+    private Rain rain;
 
     public  double getMinTemperature()
     {
