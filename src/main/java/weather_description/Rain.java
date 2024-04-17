@@ -1,11 +1,13 @@
 package weather_description;
 
+//object class for rain description
 public class Rain
 {
     private String duration;
     private double amount;
     private  boolean isRaining;
 
+    //default constructor
     public Rain()
     {
         this.isRaining = false;
@@ -13,6 +15,7 @@ public class Rain
         this.amount = 0.0;
     }
 
+    //constructor with duration and amount
     public Rain(String duration, double amount)
     {
         this.duration = duration;
@@ -20,6 +23,7 @@ public class Rain
         this.isRaining = true;
     }
 
+    //getter and setter for private values
     public String getDuration()
     {
         return  this.duration;

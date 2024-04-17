@@ -5,13 +5,16 @@ import java.util.Map;
 
 public class WeatherCondition
 {
+    //hash map used to store weather data according to a passed dates
     private HashMap<String, WeatherData> weatherDataHashMap;
 
+    //default constructor
     public WeatherCondition()
     {
         weatherDataHashMap = new HashMap<>();
     }
 
+    //method to add data to the hashmap
     public boolean addData(String date, WeatherData weatherData)
     {
         if(weatherDataHashMap.containsKey(date)) return false;
@@ -19,18 +22,9 @@ public class WeatherCondition
         return true;
     }
 
-    public WeatherData GetWeatherData(String key)
+    //method to get weather condition by date
+    public WeatherData getWeatherData(String key)
     {
         return weatherDataHashMap.get(key);
-    }
-
-    public void Debug()
-    {
-        for ( Map.Entry<String, WeatherData> entry : weatherDataHashMap.entrySet())
-        {
-            String key = entry.getKey();
-            WeatherData data = entry.getValue();
-            //System.out.println("DATE: " + key + " TEMP: " + data.getGeneralTemperature() + " RAIN: " + data.isRaining + " RAIN DURATION: " + data.rainDuration);
-        }
     }
 }

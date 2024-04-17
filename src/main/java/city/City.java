@@ -31,11 +31,6 @@ public class City
         return true;
     }
 
-    public void Debug()
-    {
-        weatherCondition.Debug();
-    }
-
     public String toString()
     {
         return  "ID: " + id + "\n"
