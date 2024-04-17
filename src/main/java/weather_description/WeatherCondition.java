@@ -30,7 +30,7 @@ public class WeatherCondition
         {
             String key = entry.getKey();
             WeatherData data = entry.getValue();
-            System.out.println("DATE: " + key + " TEMP: " + data.getGeneralTemperature());
+            //System.out.println("DATE: " + key + " TEMP: " + data.getGeneralTemperature() + " RAIN: " + data.isRaining + " RAIN DURATION: " + data.rainDuration);
         }
     }
 }

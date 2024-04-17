@@ -8,8 +8,10 @@ import java.net.*;
 import java.net.URL;
 
 
+import com.google.gson.JsonObject;
 import org.json.JSONArray;
 import org.json.JSONObject;
+import weather_description.Rain;
 import weather_description.WeatherData;
 
 public class WeatherManager {
@@ -50,10 +52,11 @@ public class WeatherManager {
                 for (int i = 0; i < listArray.length(); i++)
                 {
                     JSONObject listElement = listArray.getJSONObject(i);
-                    System.out.println(listElement);
+                    //System.out.println(listElement);
                     WeatherData weatherData = new WeatherData();
                     getWeatherTemperature(listElement.getJSONObject("main"), weatherData);
-                    city.addWeatherCondition(listArray.getJSONObject(i).getString("dt_txt"), weatherData);
+                    getRainData(listElement, weatherData);
+                    city.addWeatherCondition(listElement.getString("dt_txt"), weatherData);
                 }
                 //city.Debug();
                 //System.out.println("Temperature: " + city.getTemperature() + "F");
@@ -96,5 +99,30 @@ public class WeatherManager {
         //weatherTemperature.temperatureFeelsLike = listItem.getDouble("feels_like");
         //weatherTemperature.humidity = listItem.getDouble("humidity");
         //return  weatherTemperature;
+    }
+
+    private  void getRainData(JSONObject listItem, WeatherData weatherData)
+    {
+        Rain rain;
+        if(!listItem.has("rain"))
+        {
+            rain = new Rain();
+            weatherData.setRain(rain);
+            return;
+        }
+
+        JSONObject rainObj = listItem.getJSONObject("rain");
+        JSONArray weatherArray = listItem.getJSONArray("weather");
+        String weather = weatherArray.toString();
+        String[] split = weather.split(",");
+        split = split[1].split(":");
+        split[1] = split[1].replace("\"", "");
+        //System.out.println(rainObj.toString());
+
+        String parse = rainObj.toString().replace("{", "");
+        parse = parse.replace("{", "");
+        split = parse.split(":");
+        System.out.println(split[1]);
+        rain = new Rain(split[1], split[0], Double.valueOf(split[1]));
     }
 }

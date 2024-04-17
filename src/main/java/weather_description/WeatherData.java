@@ -8,6 +8,7 @@ public class WeatherData
     public double minTemperature;
     public double maxTemperature;
     public  double generalTemperature;
+    private   Rain rain;
 
     public  double getMinTemperature()
     {
@@ -22,5 +23,15 @@ public class WeatherData
     public double getGeneralTemperature()
     {
         return DataConversion.round(generalTemperature - TEMP_CONVERSION, 2);
+    }
+
+    public void setRain(Rain rain)
+    {
+        this.rain = rain;
+    }
+
+    public Rain getRain()
+    {
+        return  this.rain;
     }
 }
