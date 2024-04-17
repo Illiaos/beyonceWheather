@@ -9,11 +9,6 @@ public class UserRequest {
     private Date startDate;
     private String[] requestCity;
 
-    // default constructor; not finished
-    private UserRequest() {
-
-    }
-
     // constructor to initialize date and requested cities
     private UserRequest(Date date, String[] requestCity) {
         this.startDate = date;
