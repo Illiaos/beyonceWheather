@@ -48,7 +48,7 @@ public class WeatherData
     public double getGeneralTemperature()
     {
         //conversion temperature to C and convert to double value of format 0.00
-        return DataConversion.round(generalTemperature - TEMP_CONVERSION, 2);
+        return DataConversion.round(generalTemperature - TEMP_CONVERSION, 1);
     }
 
     public void setRain(Rain rain)

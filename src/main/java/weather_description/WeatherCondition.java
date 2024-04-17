@@ -27,4 +27,9 @@ public class WeatherCondition
     {
         return weatherDataHashMap.get(key);
     }
+
+    public int getSize()
+    {
+        return weatherDataHashMap.size();
+    }
 }
