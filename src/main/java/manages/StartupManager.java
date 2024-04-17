@@ -9,7 +9,7 @@ public class StartupManager
 {
     private static final boolean TRACE_MODE = false;
     private static final String BOT_NAME = "super";
-    public void main(String []args)
+    public static void main(String []args)
     {
 //      WeatherManager manager = new WeatherManager();
 //      manager.requestWeather("London");

@@ -10,10 +10,12 @@ public class UserRequest {
     private String[] requestCity;
 
     // constructor to initialize date and requested cities
-    private UserRequest(Date date, String[] requestCity) {
+    public UserRequest(Date date, String[] requestCity) {
         this.startDate = date;
         this.requestCity = requestCity;
     }
+
+    public UserRequest() { }
 
     // method to get start date from user input
     public Date getStartDate() {
@@ -35,7 +37,7 @@ public class UserRequest {
     }
 
     public void setStartDate(Date startDate) {
-        this.startDate = date;
+        this.startDate = startDate;
     }
 
     public String[] getRequestCity() {

@@ -3,7 +3,10 @@ package user_input;
 import clothes.ClotheElement;
 import clothes.ClotheType;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Scanner;
 
@@ -132,4 +135,24 @@ public class UserInput
         request.setStartDate(requestDate());
         request.setCity(requestCity());
     }
+
+    private Date requestDate()
+    {
+        while (true)
+        {
+            System.out.println("Enter Start Date in a format dd:mm:year");
+            SimpleDateFormat dateFormat = new SimpleDateFormat("dd:MM:yyyy");
+            dateFormat.setLenient(false);
+            String inputDate = scanner.next();
+            try
+            {
+                return dateFormat.parse(inputDate);
+            }
+            catch (ParseException e)
+            {
+                System.out.println("Wrong Input");
+            }
+        }
+    }
+
 }
