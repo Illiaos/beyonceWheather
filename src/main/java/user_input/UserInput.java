@@ -128,6 +128,8 @@ public class UserInput
 
     private void requestWeather()
     {
-        System.out.println("NEED IMPLEMENTATION");
+        UserRequest request = new UserRequest();
+        request.setStartDate(requestDate());
+        request.setCity(requestCity());
     }
 }
