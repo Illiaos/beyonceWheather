@@ -13,25 +13,22 @@ public class City
     public double timeZone;
     public double sunrise;
     public double sunset;
-    public ArrayList<WeatherClouds> weatherClouds;
-    public ArrayList<WeatherCondition> weatherCondition;
-    public ArrayList<WeatherRain> weatherRain;
-    public ArrayList<WeatherTemperature> weatherTemperature;
-    public ArrayList<WeatherWind> weatherWind;
 
+    private WeatherCondition weatherCondition;
     public City()
     {
-        weatherClouds = new ArrayList<WeatherClouds>();
-        weatherCondition = new ArrayList<WeatherCondition>();
-        weatherRain = new ArrayList<WeatherRain>();
-        weatherTemperature = new ArrayList<WeatherTemperature>();
-        weatherWind = new ArrayList<WeatherWind>();
+        weatherCondition = new WeatherCondition();
     }
 
     public double getTemperature()
     {
-        if(weatherTemperature.isEmpty() == true) return  0.0f;
-        return weatherTemperature.get(0).temperature;
+        return 0.0f;
+    }
+
+    public boolean addWeatherCondition(String date, WeatherData weatherData)
+    {
+        weatherCondition.addData(date, weatherData);
+        return true;
     }
 
     public String toString()

@@ -11,10 +11,12 @@ public class StartupManager
     private static final String BOT_NAME = "super";
     public static void main(String []args)
     {
-//      WeatherManager manager = new WeatherManager();
-//      manager.requestWeather("London");
+        WeatherManager manager = new WeatherManager();
+        manager.requestWeather("London");
+        //manager.requestWeather("Warszawa");
+        //manager.requestWeather("Brasilia");
 
-        try{
+        /*try{
 
             //Initialise bot
             String resourcesPath = getResourcesPath();
@@ -67,7 +69,7 @@ public class StartupManager
 
         } catch(Exception e){
             e.printStackTrace();
-        }
+        }*/
     }
 
     private static String getResourcesPath() {
