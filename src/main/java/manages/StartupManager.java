@@ -16,7 +16,7 @@ public class StartupManager
         //manager.requestWeather("Warszawa");
         //manager.requestWeather("Brasilia");
 
-        /*try{
+        try{
 
             //Initialise bot
             String resourcesPath = getResourcesPath();
@@ -52,16 +52,43 @@ public class StartupManager
 
                     String request = line;
 
-                    if(MagicBooleans.trace_mode)
-                        System.out.println("STATE = " + request + ":THAT = " + ((History) session.thatHistory.get(0)).get(0) + ":TOPIC = " + session.predicates.get("topic"));
+                    String question = "";
+                    String[] requestArr = request.split(" ");
 
-                    String response = session.multisentenceRespond(request);
-                    while(response.contains("&lt;"))
-                        response = response.replace("&lt;", "<");
-                    while(response.contains("&gt;"))
-                        response = response.replace("&gt;", ">");
+                    //forloop to extract question from request
+                    for(int i = 0; i < requestArr.length - 1; i++){
 
-                    System.out.println(response);
+                        question += requestArr[i] + " ";
+                        question.strip();
+
+                    }
+
+                    //location to be queried
+                    String location = requestArr[requestArr.length - 1];
+
+                    //if the question matches the set structure
+                    //TODO - Create more variations of questions
+                    if(question.toUpperCase() == "WHAT IS THE WEATHER LIKE IN"){
+
+                        //request the weather
+                        manager.requestWeather(location);
+
+                    }
+                    //else run bot code
+                    else {
+
+                        if (MagicBooleans.trace_mode)
+                            System.out.println("STATE = " + request + ":THAT = " + (session.thatHistory.get(0)).get(0) + ":TOPIC = " + session.predicates.get("topic"));
+
+                        String response = session.multisentenceRespond(request);
+                        while (response.contains("&lt;"))
+                            response = response.replace("&lt;", "<");
+                        while (response.contains("&gt;"))
+                            response = response.replace("&gt;", ">");
+
+                        System.out.println(response);
+
+                    }
 
                 }
 
@@ -69,7 +96,7 @@ public class StartupManager
 
         } catch(Exception e){
             e.printStackTrace();
-        }*/
+        }
     }
 
     private static String getResourcesPath() {
