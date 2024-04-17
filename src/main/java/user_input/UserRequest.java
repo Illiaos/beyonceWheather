@@ -29,9 +29,22 @@ public class UserRequest {
     public String[] getRequestCity() {
         return this.requestCity;
     }
-    // getter and setters for city
-    public void setRequestCity(String[] city) {
-        this.requestCity = city;
+    // Method to set request city array based on user input
+    public void setRequestCity() {
+        Scanner scanner = new Scanner(System.in);
+        String[] cityCollection = new String[3];
+
+        System.out.println("Enter city names");
+        for (int i = 0; i < 3; ++i) {
+            while (true) {
+                String input = scanner.next();
+                if (input.matches("[a-zA-Z]+")) {
+                    cityCollection[i] = input;
+                    break;
+                }
+            }
+        }
+        this.requestCity = cityCollection;
     }
 
 }
