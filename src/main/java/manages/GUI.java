@@ -1,19 +1,18 @@
 package manages;
 
 import java.awt.event.ActionListener;
-import java.awt.image.BufferedImage;
 import java.io.File;
 
 import java.awt.*;
 import java.awt.event.*;
-import javax.imageio.ImageIO;
+import java.util.concurrent.TimeUnit;
 import javax.swing.*;
+import javax.swing.Timer;
 import javax.swing.border.*;
 
 import city.City;
 
 import org.alicebot.ab.*;
-import org.alicebot.ab.utils.IOUtils;
 
 public class GUI implements ActionListener {
 
@@ -26,6 +25,9 @@ public class GUI implements ActionListener {
     private Chat session = null;
     private JTextField input;
     private JTextArea outputArea;
+    private String imagePath;
+    private ImageIcon[] icons = new ImageIcon[2];
+    private JLabel image;
 
     protected void run(){
 
@@ -41,12 +43,16 @@ public class GUI implements ActionListener {
             e.printStackTrace();
         }
 
+        //GUI
         JFrame frame = new JFrame("Beyonce Weather");
         GridLayout grid = new GridLayout(2, 1);
         frame.setLayout(grid);
 
-        ImageIcon pic = new ImageIcon("C:/Users/Walrus/Desktop/beyonce_mouth_closed.png");
-        JLabel image = new JLabel(pic);
+        getImagePath();
+        icons[0] = new ImageIcon(imagePath + "/beyonce_mouth_closed.png");
+        icons[1] = new ImageIcon(imagePath + "/beyonce_mouth_open.png");
+
+        image = new JLabel(icons[0]);
         image.setBounds(0,0,250,250);
 
         JPanel outputPanel = new JPanel(null);
@@ -87,6 +93,8 @@ public class GUI implements ActionListener {
         Border compound = new CompoundBorder(lb, margin);
         submitBtn.setBorder(compound);
         submitBtn.setBounds(650,100, 75, 29);
+
+        //Where the action happens
         submitBtn.addActionListener(this);
 
         inputPanel.add(inputLabel);
@@ -101,35 +109,6 @@ public class GUI implements ActionListener {
         frame.setResizable(false);
         frame.setVisible(true);
 
-
-    }
-
-    private static boolean correctSyntax(String question) {
-
-        String[] questionArr = {"WHAT IS THE WEATHER LIKE IN", "WHAT'S THE WEATHER LIKE IN", "WHATS THE WEATHER LIKE IN",
-                "WHAT IS THE WEATHER IN", "WHAT'S THE WEATHER IN", "WHATS THE WEATHER IN",
-                "WHAT IS THE TEMPERATURE LIKE IN", "WHAT'S THE TEMPERATURE LIKE IN", "WHATS THE TEMPERATURE LIKE IN",
-                "WHAT IS THE TEMPERATURE IN", "WHAT'S THE TEMPERATURE IN", "WHATS THE TEMPERATURE IN",
-                "WHAT IS IT LIKE IN", "WHAT'S IT LIKE IN", "WHATS IT LIKE IN",
-                "WHAT IS THE FORECAST FOR", "WHAT'S THE FORECAST FOR", "WHATS THE FORECAST FOR"};
-
-        for(int i = 0; i < questionArr.length; i++){
-            if(question.equals(questionArr[i]))
-                return true;
-
-        }
-        return false;
-    }
-
-    private static String getResourcesPath() {
-
-        //Get resource location for bot
-        File currDir = new File(".");
-        String path = currDir.getAbsolutePath();
-        path = path.substring(0, path.length() - 2);
-        System.out.println(path);
-        String resourcesPath = path + File.separator + "src" + File.separator + "main" + File.separator + "bot";
-        return resourcesPath;
     }
 
     @Override
@@ -210,7 +189,8 @@ public class GUI implements ActionListener {
 
                     String response = "As the temperature in " + city.name + " is currently " + city.getTemperature() + "° Celsius, I would recommend " + recommendedClothes;
 
-                    outputArea.append(">" + response + "\n");
+                    outputArea.append(">" + response + "\n\n");
+                    botTalk();
 
                 }
                 //else run bot code
@@ -226,6 +206,7 @@ public class GUI implements ActionListener {
                         response = response.replace("&gt;", ">");
 
                     outputArea.append(">" + response + "\n\n");
+                    botTalk();
 
                 }
 
@@ -234,6 +215,49 @@ public class GUI implements ActionListener {
         } catch(Exception e){
             e.printStackTrace();
         }
+
+    }
+
+    private void botTalk() {
+
+        //TODO: Get that damn bot talking
+
+    }
+
+    private static boolean correctSyntax(String question) {
+
+        String[] questionArr = {"WHAT IS THE WEATHER LIKE IN", "WHAT'S THE WEATHER LIKE IN", "WHATS THE WEATHER LIKE IN",
+                "WHAT IS THE WEATHER IN", "WHAT'S THE WEATHER IN", "WHATS THE WEATHER IN",
+                "WHAT IS THE TEMPERATURE LIKE IN", "WHAT'S THE TEMPERATURE LIKE IN", "WHATS THE TEMPERATURE LIKE IN",
+                "WHAT IS THE TEMPERATURE IN", "WHAT'S THE TEMPERATURE IN", "WHATS THE TEMPERATURE IN",
+                "WHAT IS IT LIKE IN", "WHAT'S IT LIKE IN", "WHATS IT LIKE IN",
+                "WHAT IS THE FORECAST FOR", "WHAT'S THE FORECAST FOR", "WHATS THE FORECAST FOR"};
+
+        for(int i = 0; i < questionArr.length; i++){
+            if(question.equals(questionArr[i]))
+                return true;
+
+        }
+        return false;
+    }
+
+    private static String getResourcesPath() {
+
+        //Get resource location for bot
+        File currDir = new File(".");
+        String path = currDir.getAbsolutePath();
+        path = path.substring(0, path.length() - 2);
+        System.out.println(path);
+        String resourcesPath = path + File.separator + "src" + File.separator + "main" + File.separator + "bot";
+        return resourcesPath;
+    }
+
+    private void getImagePath() {
+
+        File currDir = new File(".");
+        String path = currDir.getAbsolutePath();
+        path = path.substring(0, path.length() - 2);
+        imagePath = path + File.separator + "src" + File.separator + "main" + File.separator + "resources" + File.separator + "images";
 
     }
 
