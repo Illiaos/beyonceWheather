@@ -5,19 +5,16 @@ import java.io.File;
 
 import java.awt.*;
 import java.awt.event.*;
-import java.util.concurrent.TimeUnit;
 import javax.swing.*;
-import javax.swing.Timer;
 import javax.swing.border.*;
 
 import city.City;
 
 import org.alicebot.ab.*;
 
-public class GUI implements ActionListener {
+public class GUI extends Thread implements ActionListener {
 
     public GUI(){}
-
     private static final boolean TRACE_MODE = false;
     private static final String BOT_NAME = "super";
 
@@ -25,11 +22,10 @@ public class GUI implements ActionListener {
     private Chat session = null;
     private JTextField input;
     private JTextArea outputArea;
-    private String imagePath;
     private ImageIcon[] icons = new ImageIcon[2];
     private JLabel image;
 
-    protected void run(){
+    protected void beyonceBot(){
 
         try {
             //Initialise bot
@@ -48,9 +44,9 @@ public class GUI implements ActionListener {
         GridLayout grid = new GridLayout(2, 1);
         frame.setLayout(grid);
 
-        getImagePath();
+        String imagePath = getImagePath();
         icons[0] = new ImageIcon(imagePath + "/beyonce_mouth_closed.png");
-        icons[1] = new ImageIcon(imagePath + "/beyonce_mouth_open.png");
+        icons[1] = new ImageIcon(imagePath + "/beyonce_talking.gif");
 
         image = new JLabel(icons[0]);
         image.setBounds(0,0,250,250);
@@ -88,9 +84,11 @@ public class GUI implements ActionListener {
         submitBtn.setFont(new Font("Corbel", Font.PLAIN, 16));
         submitBtn.setForeground(Color.black);
         submitBtn.setBackground(Color.white);
-        Border lb = new LineBorder(Color.BLACK);
+
+        Border lineBorder = new LineBorder(Color.BLACK);
         Border margin = new EmptyBorder(5, 5, 5, 5);
-        Border compound = new CompoundBorder(lb, margin);
+        Border compound = new CompoundBorder(lineBorder, margin);
+
         submitBtn.setBorder(compound);
         submitBtn.setBounds(650,100, 75, 29);
 
@@ -105,7 +103,7 @@ public class GUI implements ActionListener {
         frame.getContentPane().add(inputPanel);
 
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setSize(960, 540);
+        frame.setBounds(500, 250, 960, 540);
         frame.setResizable(false);
         frame.setVisible(true);
 
@@ -113,6 +111,15 @@ public class GUI implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent a) {
+
+        /*
+        Simple thread to make beyonce's mouth move
+        after the response has been printed to screen
+        while not interfering with the main program
+        */
+        image.setIcon(icons[1]);
+        Thread botTalk = new Thread(this);
+        botTalk.start();
 
         WeatherManager manager = new WeatherManager();
 
@@ -126,7 +133,6 @@ public class GUI implements ActionListener {
             if(line == null || line.length() < 1) {
                 line = MagicStrings.null_input;
             }
-
             //quit
             if(line.equals("q")) {
                 System.exit(0);
@@ -190,7 +196,6 @@ public class GUI implements ActionListener {
                     String response = "As the temperature in " + city.name + " is currently " + city.getTemperature() + "° Celsius, I would recommend " + recommendedClothes;
 
                     outputArea.append(">" + response + "\n\n");
-                    botTalk();
 
                 }
                 //else run bot code
@@ -206,7 +211,6 @@ public class GUI implements ActionListener {
                         response = response.replace("&gt;", ">");
 
                     outputArea.append(">" + response + "\n\n");
-                    botTalk();
 
                 }
 
@@ -218,9 +222,15 @@ public class GUI implements ActionListener {
 
     }
 
-    private void botTalk() {
+    public void run(){
 
-        //TODO: Get that damn bot talking
+        try {
+            sleep(1000);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+
+        image.setIcon(icons[0]);
 
     }
 
@@ -248,16 +258,15 @@ public class GUI implements ActionListener {
         String path = currDir.getAbsolutePath();
         path = path.substring(0, path.length() - 2);
         System.out.println(path);
-        String resourcesPath = path + File.separator + "src" + File.separator + "main" + File.separator + "bot";
-        return resourcesPath;
+        return path + File.separator + "src" + File.separator + "main" + File.separator + "bot";
     }
 
-    private void getImagePath() {
+    private String getImagePath() {
 
         File currDir = new File(".");
         String path = currDir.getAbsolutePath();
         path = path.substring(0, path.length() - 2);
-        imagePath = path + File.separator + "src" + File.separator + "main" + File.separator + "resources" + File.separator + "images";
+        return path + File.separator + "src" + File.separator + "main" + File.separator + "resources" + File.separator + "images";
 
     }
 

@@ -6,7 +6,7 @@ public class StartupManager
 
         GUI gui = new GUI();
 
-        gui.run();
+        gui.beyonceBot();
 
     }
 }
