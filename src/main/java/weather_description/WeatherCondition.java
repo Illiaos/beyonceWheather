@@ -70,7 +70,6 @@ public class WeatherCondition
         return  calculateGeneralTemperature();
     }
 
-
     //method to calculate general day temperature
     private double calculateGeneralTemperature()
     {
@@ -80,5 +79,21 @@ public class WeatherCondition
             temp += value.getGeneralTemperature();
         }
         return DataConversion.round(temp / weatherDataHashMap.size(), 2);
+    }
+
+    public String rainState()
+    {
+        for(Map.Entry<String, WeatherData> item : weatherDataHashMap.entrySet())
+        {
+            System.out.println("DATE: " + item.getKey());
+            if(item.getValue().getRain() == null) continue;
+            if(!item.getValue().getRain().getIsRaining()) continue;
+
+            String returnValue = "Raining on " + item.getKey().split(" ")[0];
+            returnValue += " At: " + item.getKey().split(" ")[1];
+            returnValue += " Duration: " + item.getValue().getRain().getDuration().replaceAll("\"", "");
+            return returnValue;
+        }
+        return null;
     }
 }

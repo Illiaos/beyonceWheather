@@ -31,6 +31,11 @@ public class City
         return true;
     }
 
+    public String rainState()
+    {
+        return  weatherCondition.rainState();
+    }
+
     public String toString()
     {
         return  "ID: " + id + "\n"

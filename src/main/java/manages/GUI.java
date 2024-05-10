@@ -195,7 +195,14 @@ public class GUI extends Thread implements ActionListener {
                         recommendedClothes = "light, breathable clothes, a lot of sunscreen, a good amount of water to stay hydrated, and someplace to seek shade until temperatures cool.";
                     }
 
+                    String rainState = city.rainState();
+
                     String response = "As the temperature in " + city.name + " is currently " + cityTemperature + "° Celsius, I would recommend " + recommendedClothes;
+                    if(rainState != null)
+                    {
+                        response += "\n";
+                        response += rainState + ". Recommended to take an umbrella";
+                    }
 
                     outputArea.append(">" + response + "\n\n");
 
