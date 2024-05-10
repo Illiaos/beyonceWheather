@@ -187,7 +187,7 @@ public class GUI extends Thread implements ActionListener {
                         recommendedClothes = "a lightweight top such as a T-shirt, shorts or light pants, a sun cap, sandals, and sunglasses. It might also be beneficial to bring sunscreen and a water bottle.";
                     }
                     //temps between 30 and 40
-                    else if(city.getTemperature() <= 40){
+                    else if(cityTemperature <= 40){
                         recommendedClothes = "light, breathable, and loose fitting clothes such as summer dresses or T-shirts, shorts, and sandals. It would be helpful to bring a water bottle and sunscreen as well to keep cool and protect against UV exposure.";
                     }
                     //temps above 40
@@ -201,7 +201,15 @@ public class GUI extends Thread implements ActionListener {
                     if(rainState != null)
                     {
                         response += "\n";
-                        response += rainState + ". Recommended to take an umbrella";
+                        response += rainState + ".";
+                        if(cityTemperature < 15)
+                        {
+                            response += " Recommended to take a jacket with a hood";
+                        }
+                        else
+                        {
+                            response += " Recommended to take an umbrella";
+                        }
                     }
 
                     outputArea.append(">" + response + "\n\n");
