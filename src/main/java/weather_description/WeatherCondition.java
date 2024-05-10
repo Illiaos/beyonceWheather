@@ -85,7 +85,6 @@ public class WeatherCondition
     {
         for(Map.Entry<String, WeatherData> item : weatherDataHashMap.entrySet())
         {
-            System.out.println("DATE: " + item.getKey());
             if(item.getValue().getRain() == null) continue;
             if(!item.getValue().getRain().getIsRaining()) continue;
 
