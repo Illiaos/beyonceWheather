@@ -1,8 +1,11 @@
 package weather_description;
 
 import helper.DataConversion;
+import org.jetbrains.annotations.Nullable;
 
+import java.util.Dictionary;
 import java.util.HashMap;
+import java.util.Hashtable;
 import java.util.Map;
 
 public class WeatherCondition
@@ -94,5 +97,44 @@ public class WeatherCondition
             return returnValue;
         }
         return null;
+    }
+
+    //get frequent weather state
+    public String getGeneralWeatherState()
+    {
+        HashMap<String, Integer> states = new HashMap<>();
+        for(WeatherData data : weatherDataHashMap.values())
+        {
+            if(states.containsKey(data.getWeatherMain()))
+            {
+                states.compute(data.getWeatherMain(), (k, current) -> current + 1);
+            }
+            else
+            {
+                states.put(data.getWeatherMain(), 1);
+            }
+        }
+
+        return getKeyWithHighestValue(states);
+    }
+
+    //find most frequent weather state
+    private static @Nullable String getKeyWithHighestValue(HashMap<String, Integer> states)
+    {
+        String keyWithHighestValue = null;
+        int highestValue = 0;
+
+        // Iterate through the entries
+        for (Map.Entry<String, Integer> entry : states.entrySet())
+        {
+            // Check if the current value is higher than the highest value found so far
+            if (entry.getValue() > highestValue) {
+
+                // Update the highest value and corresponding key
+                highestValue = entry.getValue();
+                keyWithHighestValue = entry.getKey();
+            }
+        }
+        return keyWithHighestValue;
     }
 }

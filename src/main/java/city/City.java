@@ -36,6 +36,11 @@ public class City
         return  weatherCondition.rainState();
     }
 
+    public String getGeneralWeatherState()
+    {
+        return  weatherCondition.getGeneralWeatherState();
+    }
+
     public String toString()
     {
         return  "ID: " + id + "\n"

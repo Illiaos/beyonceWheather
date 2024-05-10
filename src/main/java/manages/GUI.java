@@ -195,8 +195,11 @@ public class GUI extends Thread implements ActionListener {
                         recommendedClothes = "light, breathable clothes, a lot of sunscreen, a good amount of water to stay hydrated, and someplace to seek shade until temperatures cool.";
                     }
 
-                    String rainState = city.rainState();
+                    //general weather section
+                    String general = "Weather will be: " + city.getGeneralWeatherState() + "\n";
 
+                    //rain Section
+                    String rainState = city.rainState();
                     String response = "As the temperature in " + city.name + " is currently " + cityTemperature + "° Celsius, I would recommend " + recommendedClothes;
                     if(rainState != null)
                     {
@@ -212,7 +215,7 @@ public class GUI extends Thread implements ActionListener {
                         }
                     }
 
-                    outputArea.append(">" + response + "\n\n");
+                    outputArea.append(">" + general + response + "\n\n");
 
                 }
                 //else run bot code

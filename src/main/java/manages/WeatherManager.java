@@ -6,6 +6,8 @@ import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.net.*;
 import java.net.URL;
+import java.util.Dictionary;
+import java.util.Hashtable;
 
 
 import com.google.gson.JsonObject;
