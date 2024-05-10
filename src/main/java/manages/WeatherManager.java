@@ -115,6 +115,7 @@ public class WeatherManager {
         parse = parse.replace("}", "");
         String[] split = parse.split(":");
         rain = new Rain(split[0], Double.parseDouble(split[1]));
+        weatherData.setRain(rain);
     }
 
     //method to parse passed json object and extract weather array,
