@@ -1,5 +1,7 @@
 package weather_description;
 
+import helper.DataConversion;
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -26,5 +28,57 @@ public class WeatherCondition
     public WeatherData getWeatherData(String key)
     {
         return weatherDataHashMap.get(key);
+    }
+
+    //method to get min temperature
+    public  double getMinWeather()
+    {
+        return  calculateMinTemperature();
+    }
+
+    //method to calculate min day temperature
+    private double calculateMinTemperature()
+    {
+        double temp = 0.0f;
+        for(WeatherData value : weatherDataHashMap.values())
+        {
+            temp += value.getMaxTemperature();
+        }
+        return  temp / weatherDataHashMap.size();
+    }
+
+    //method to get max temperature
+    public double getMaxWeather()
+    {
+        return  calculateMaxTemperature();
+    }
+
+    //method to calculate min day temperature
+    private double calculateMaxTemperature()
+    {
+        double temp = 0.0f;
+        for(WeatherData value : weatherDataHashMap.values())
+        {
+            temp += value.getMaxTemperature();
+        }
+        return  temp / weatherDataHashMap.size();
+    }
+
+    //method to get general temperature
+    public  double getGeneralTemperature()
+    {
+        return  calculateGeneralTemperature();
+    }
+
+
+    //method to calculate general day temperature
+    private double calculateGeneralTemperature()
+    {
+        double temp = 0.0f;
+        for(WeatherData value : weatherDataHashMap.values())
+        {
+            temp += value.getGeneralTemperature();
+        }
+        return DataConversion.round(temp / weatherDataHashMap.size(), 2);
     }
 }

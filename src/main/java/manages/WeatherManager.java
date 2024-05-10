@@ -117,7 +117,8 @@ public class WeatherManager {
         rain = new Rain(split[0], Double.parseDouble(split[1]));
     }
 
-    //method to parse passed json object and extract weather array, that contains information according to a weather condition
+    //method to parse passed json object and extract weather array,
+    // that contains information according to a weather condition
     private void getWeatherMain(JSONObject listItem, WeatherData weatherData)
     {
         JSONArray weatherArray = listItem.getJSONArray("weather");

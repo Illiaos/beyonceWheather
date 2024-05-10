@@ -165,7 +165,7 @@ public class GUI extends Thread implements ActionListener {
                 if(correctSyntax(question.toUpperCase())){
 
                     //request the weather
-                    City city = manager.requestWeather(location);
+                    City city = manager.requestWeather(location.toLowerCase());
                     String recommendedClothes = "";
 
                     //temps lower than 0
@@ -236,7 +236,7 @@ public class GUI extends Thread implements ActionListener {
 
     private static boolean correctSyntax(String question) {
 
-        String[] questionArr = {"WHAT IS THE WEATHER LIKE IN", "WHAT'S THE WEATHER LIKE IN", "WHATS THE WEATHER LIKE IN",
+        String[] questionArr = {"WEATHER IN", "WHAT IS THE WEATHER LIKE IN", "WHAT'S THE WEATHER LIKE IN", "WHATS THE WEATHER LIKE IN",
                 "WHAT IS THE WEATHER IN", "WHAT'S THE WEATHER IN", "WHATS THE WEATHER IN",
                 "WHAT IS THE TEMPERATURE LIKE IN", "WHAT'S THE TEMPERATURE LIKE IN", "WHATS THE TEMPERATURE LIKE IN",
                 "WHAT IS THE TEMPERATURE IN", "WHAT'S THE TEMPERATURE IN", "WHATS THE TEMPERATURE IN",

@@ -22,7 +22,7 @@ public class City
 
     public double getTemperature()
     {
-        return 0.0f;
+        return  weatherCondition.getGeneralTemperature();
     }
 
     public boolean addWeatherCondition(String date, WeatherData weatherData)
