@@ -168,20 +168,22 @@ public class GUI extends Thread implements ActionListener {
                     City city = manager.requestWeather(location.toLowerCase());
                     String recommendedClothes = "";
 
+                    double cityTemperature = city.getTemperature();
+
                     //temps lower than 0
-                    if(city.getTemperature() <= 0) {
+                    if(cityTemperature <= 0) {
                         recommendedClothes = "a parka, woolen pants, some warm gloves, and a wooly hat.";
                     }
                     //temps between 0 and 10
-                    else if(city.getTemperature() <= 10){
+                    else if(cityTemperature <= 10){
                         recommendedClothes = "a thick jacket or fleece, woolen pants, and a scarf.";
                     }
                     //temps between 10 and 20
-                    else if(city.getTemperature() <= 20){
+                    else if(cityTemperature <= 20){
                         recommendedClothes = "a lightweight cardigan, some jeans, and maybe a scarf.";
                     }
                     //temps between 20 and 30
-                    else if(city.getTemperature() <= 30){
+                    else if(cityTemperature <= 30){
                         recommendedClothes = "a lightweight top such as a T-shirt, shorts or light pants, a sun cap, sandals, and sunglasses. It might also be beneficial to bring sunscreen and a water bottle.";
                     }
                     //temps between 30 and 40
@@ -193,7 +195,7 @@ public class GUI extends Thread implements ActionListener {
                         recommendedClothes = "light, breathable clothes, a lot of sunscreen, a good amount of water to stay hydrated, and someplace to seek shade until temperatures cool.";
                     }
 
-                    String response = "As the temperature in " + city.name + " is currently " + city.getTemperature() + "° Celsius, I would recommend " + recommendedClothes;
+                    String response = "As the temperature in " + city.name + " is currently " + cityTemperature + "° Celsius, I would recommend " + recommendedClothes;
 
                     outputArea.append(">" + response + "\n\n");
 
